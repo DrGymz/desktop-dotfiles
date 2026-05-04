@@ -1,0 +1,8 @@
+require('config.options')
+require('config.keybinds')
+require("lsp")
+require("plugins.nvim-cmp")
+require("plugins.telescope")
+require("plugins.treesitter")
+require("plugins.oneliners")
+require("plugins.colors")

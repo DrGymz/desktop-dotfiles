@@ -1,0 +1,102 @@
+[
+  {
+    "height": 30,
+    "spacing": 4,
+    "on-sigusr1": "hide",
+    "on-sigusr2": "show",
+    "modules-left":   ["custom/archicon", "clock", "hyprland/workspaces"],
+    "modules-center": ["tray"],
+    "modules-right":  ["pulseaudio", "network", "battery", "custom/notification"],
+
+    "hyprland/workspaces": {
+      "disable-scroll":   true,
+      "all-outputs":      true,
+      "warp-on-scroll":   false,
+      "format":           "{name}",
+      "persistent-workspaces": {
+        "*": 4
+      }
+    },
+
+    "hyprland/window": {
+      "max-length":       40,
+      "seperate-outputs": false
+    },
+
+    "pulseaudio": {
+      "format":             "{icon}  {volume}%",
+      "format-bluetooth":   "{icon}  {volume}%",
+      "format-muted":       "󰝟",
+      "format-icons": {
+        "headphone":    "󰋋",
+        "hands-free":   "󰋎",
+        "headset":      "󰋎",
+        "phone":        "󰏲",
+        "phone-muted":  "󰏳",
+        "portable":     "󰦾",
+        "car":          "󰄋",
+        "default":      ["󰕿", "󰖀", "󰕾"]
+      },
+      "scroll-step":   1,
+      "on-click":      "blueman-manager",
+      "ignored-sinks": ["Easy Effects Sink"]
+    },
+
+    "clock": {
+      "timezone":       "America/Chicago",
+      "format":         "{:%I:%M %p}",
+      "tooltip-format": "{:%m-%d-%Y}"
+    },
+
+    "custom/notification": {
+      "tooltip":  true,
+      "format":   "<span size='16pt'>{icon}</span>",
+      "format-icons": {
+        "notification":              "󱅫",
+        "none":                      "󰂜",
+        "dnd-notification":          "󰂠",
+        "dnd-none":                  "󰪓",
+        "inhibited-notification":    "󰂛",
+        "inhibited-none":            "󰪑",
+        "dnd-inhibited-notification":"󰂛",
+        "dnd-inhibited-none":        "󰪑"
+      },
+      "return-type":    "json",
+      "exec-if":        "which swaync-client",
+      "exec":           "swaync-client -swb",
+      "on-click":       "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "escape":         true
+    },
+
+    "battery": {
+      "interval":       2,
+      "states":         { "warning": 30, "critical": 15 },
+      "format":         "{icon}  {capacity}%",
+      "format-full":    "{icon}  {capacity}%",
+      "format-charging":"󰂄  {capacity}%",
+      "format-plugged": "󰚥  {capacity}%",
+      "format-icons":   ["󰁺","󰁾", "󰂀", "󰁹"],
+      "tooltip-format": "{}"
+    },
+
+    "network": {
+      "interval":            5,
+      "on-click":            "airctl",
+      "format-wifi":         "󰤨  {essid}",
+      "format-disconnected": "󰤭  Disconnected",
+      "tooltip":             false
+    },
+
+    "tray": {
+      "icon-size": 21,
+      "spacing":   10
+    },
+
+    "custom/archicon": {
+      "format":   "󰣇",
+      "tooltip":  false,
+      "on-click": "~/.config/rofi/launchers/type-2/launcher.sh"
+    }
+  }
+]
