@@ -39,21 +39,10 @@
       };
     in
     {
-      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./common.nix
-          ./hosts/laptop/configuration.nix
-          home-manager.nixosModules.home-manager
-          hmModule
-        ];
-      };
-
-      nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./common.nix
-          ./hosts/desktop/configuration.nix
+          ./configuration.nix
           home-manager.nixosModules.home-manager
           hmModule
         ];
