@@ -16,7 +16,6 @@ let
     cargoHash = "sha256-mUY36hnyU/qjHRLqRwfVLl6hAGIy92Sg6s1XB56Hvf8=";
   };
   configs = {
-    nvim = "nvim";
     rofi = "rofi";
     kitty = "kitty";
     tmux = "tmux";
@@ -30,7 +29,7 @@ in
 {
   home.username = "asus";
   home.homeDirectory = "/home/asus";
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
 
   home.packages = [
     waybar-auto-hide
@@ -46,7 +45,11 @@ in
   xdg.configFile = builtins.mapAttrs (name: subpath: {
     source = create_symlink "${dotfiles}/${subpath}";
     recursive = true;
-  }) configs;
+  }) configs // {
+    "nvim/lua" = {
+      source = create_symlink "${dotfiles}/nvim/lua";
+    };
+  };
 
   imports = [
     ./modules/neovim.nix

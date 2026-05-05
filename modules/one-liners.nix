@@ -57,7 +57,7 @@
     enable = true;
     shellAliases = {
       nrs = "cd ~/dotfiles && git add . && sudo nixos-rebuild switch --flake ~/dotfiles#nixos";
-      ls = "eza -la";
+      ls = "eza -l";
       compile = "particle compile photon2 src/ --saveTo firmware.bin";
       flash = "particle flash --usb firmware.bin";
     };

@@ -25,6 +25,7 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
+    initLua = builtins.readFile ../nixos-config/nvim/init.lua;
 
     plugins = with pkgs.vimPlugins; [
       plenary-nvim
