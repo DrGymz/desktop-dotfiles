@@ -10,8 +10,25 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.timeout = null;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    useOSProber = true;
+    gfxmodeEfi = "2560x1440";
+    theme =
+      let
+        spaceIsolation = pkgs.fetchFromGitHub {
+          owner = "callmenoodles";
+          repo = "space-isolation";
+          rev = "2f172f7cb6769bbef8dec62738ac168698c48985";
+          hash = "sha256-YAzrqaTi9TvoSPsefYAW1ksMBu0yg92jAzFmk7l7shI=";
+        };
+      in
+      "${spaceIsolation}/2560x1440";
+  };
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
