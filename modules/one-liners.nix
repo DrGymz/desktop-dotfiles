@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     kitty
     obsidian
+    zoom-us
     tmux
     waybar
     evince

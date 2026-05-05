@@ -93,7 +93,6 @@
       pkgs.adwaita-fonts
     ];
 
-  # Particle Photon 2 / P2 USB access (DFU + CDC modes)
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTRS{idVendor}=="2b04", MODE="0666", GROUP="dialout"
     SUBSYSTEM=="tty", ATTRS{idVendor}=="2b04", MODE="0666", GROUP="dialout"

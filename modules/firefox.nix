@@ -20,7 +20,6 @@
         youtube-shorts-block
       ];
 
-      # Arkenfox (Read from a local file)
       extraConfig = builtins.readFile ./arkenfox.js;
 
       settings = {
@@ -31,21 +30,16 @@
 
         "network.cookie.lifetimePolicy" = 0;
 
-        # Force dark color scheme for content
         "layout.css.prefers-color-scheme.content-override" = 0;
 
-        # Dark background for pages that haven't loaded yet
         "browser.display.background_color" = "#282828";
         "browser.display.foreground_color" = "#ebdbb2";
         "browser.display.use_system_colors" = false;
 
-        # Tell Firefox the system uses dark theme
         "ui.systemUsesDarkTheme" = 1;
 
-        # Prevent white flash before page load
         "browser.startup.blankWindow" = false;
 
-        # Use XDG portal for file picker (fixes black screen on Hyprland/Wayland)
         "widget.use-xdg-desktop-portal.file-picker" = 1;
       };
 
