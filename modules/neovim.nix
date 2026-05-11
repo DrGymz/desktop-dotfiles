@@ -7,18 +7,24 @@
 
 {
   home.packages = with pkgs; [
-    ripgrep
+    clang-tools
+    cmake
     fd
     fzf
-    xclip
-
+    gcc
+    gradle
+    jdk
+    jdt-language-server
     lua-language-server
+    maven
     nil
-    clang-tools
-    pyright
     nixfmt
-
     nodejs
+    particle-cli
+    pyright
+    raylib
+    ripgrep
+    xclip
   ];
 
   programs.neovim = {
@@ -63,6 +69,7 @@
         p.tree-sitter-c
         p.tree-sitter-cpp
         p.tree-sitter-css
+        p.tree-sitter-java
       ]))
     ];
   };

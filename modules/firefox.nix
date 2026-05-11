@@ -10,7 +10,7 @@
   programs.firefox = {
     enable = true;
 
-    profiles.yes = {
+    profiles.ABS = {
       isDefault = true;
 
       extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
@@ -18,6 +18,7 @@
         sponsorblock
         darkreader
         youtube-shorts-block
+        bitwarden
       ];
 
       extraConfig = builtins.readFile ./arkenfox.js;

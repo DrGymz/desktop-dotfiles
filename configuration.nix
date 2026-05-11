@@ -46,22 +46,33 @@
   };
   nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    (final: prev: {
+      openldap = prev.openldap.overrideAttrs (old: {
+        doCheck = false;
+      });
+    })
+  ];
 
-  hardware.graphics.enable = true;
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    open = true;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = true;
+      open = true;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
   };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services = {
     blueman.enable = true;
-    displayManager.ly.enable = true;
+    displayManager.sddm.enable = true;
     libinput = {
       enable = true;
       mouse = {
@@ -115,8 +126,15 @@
     SUBSYSTEM=="tty", ATTRS{idVendor}=="2b04", MODE="0666", GROUP="dialout"
   '';
 
-  programs.dconf.enable = true;
-  programs.hyprland.enable = true;
+  programs = {
+    dconf.enable = true;
+    hyprland.enable = true;
+    gamemode.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
+  };
 
   nix.settings.experimental-features = [
     "nix-command"

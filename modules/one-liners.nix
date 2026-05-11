@@ -1,47 +1,48 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    kitty
-    obsidian
-    zoom-us
-    tmux
-    waybar
-    evince
-    swaynotificationcenter
-    rofi
-    hyprpaper
-    hypridle
-    discord
-    btop
-    brightnessctl
-    claude-code
+    amberol
     bibata-cursors
-    maim
     bitwarden-desktop
-    kitty
-    tmux
-    hyprpaper
-    localsend
-    hypridle
-    wl-clipboard
-    cliphist
-    grim
-    google-chrome
-    slurp
-    pavucontrol
-    playerctl
-    nemo
     blueman
-    libnotify
-    zsh-powerlevel10k
-    eza
-    raylib
-    gcc
-    cmake
-    pkg-config
-    screen
+    brightnessctl
+    btop
+    claude-code
+    cliphist
     curl
-    particle-cli
+    discord
+    eza
+    google-chrome
+    grim
+    hypridle
+    hyprpaper
+    kitty
+    libnotify
+    localsend
+    lutris
+    maim
+    mangohud
+    nemo
+    networkmanagerapplet
+    kdePackages.okular
+    obsidian
+    pavucontrol
+    pkg-config
+    playerctl
+    qbittorrent
+    qgnomeplatform
+    qgnomeplatform-qt6
+    rofi
+    screen
+    slurp
+    swaynotificationcenter
+    tmux
+    tree
+    vlc
+    waybar
+    wl-clipboard
+    zoom-us
+    zsh-powerlevel10k
   ];
 
   wayland.windowManager.hyprland = {
@@ -91,12 +92,25 @@
       package = pkgs.gruvbox-gtk-theme;
     };
     iconTheme = {
-      name = "Gruvbox-Plus-Dark";
-      package = pkgs.gruvbox-plus-icons;
+      name = "kora";
+      package = pkgs.kora-icon-theme;
     };
     font = {
       name = "Adwaita Sans";
       size = 11;
     };
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
   };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "adwaita";
+    style = {
+      name = "Breeze";
+      package = pkgs.kdePackages.breeze;
+    };
+  };
+
+  dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 }

@@ -35,6 +35,9 @@ in
     waybar-auto-hide
   ];
 
+  home.file.".local/share/qBittorrent/darkstylesheet.qbtheme".source =
+    ./modules/qbittorrent/darkstylesheet.qbtheme;
+
   home.pointerCursor = {
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";

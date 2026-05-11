@@ -82,7 +82,7 @@
 
     "network": {
       "interval":            5,
-      "on-click":            "airctl",
+      "on-click":            "nm-connection-editor",
       "format-wifi":         "󰤨  {essid}",
       "format-disconnected": "󰤭  Disconnected",
       "tooltip":             false

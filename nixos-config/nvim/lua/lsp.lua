@@ -115,6 +115,14 @@ vim.lsp.config.clangd = {
 	},
 }
 
+-- Java
+vim.lsp.config.jdtls = {
+	cmd = { 'jdtls' },
+	filetypes = { 'java' },
+	root_markers = { 'pom.xml', 'build.gradle', 'build.gradle.kts', 'settings.gradle', 'mvnw', 'gradlew', '.git' },
+	capabilities = caps,
+}
+
 -- Python
 vim.lsp.config.pyright = {
 	cmd = { 'pyright-langserver', '--stdio' },
