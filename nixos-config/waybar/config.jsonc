@@ -4,9 +4,9 @@
     "spacing": 4,
     "on-sigusr1": "hide",
     "on-sigusr2": "show",
-    "modules-left":   ["custom/archicon", "clock", "hyprland/workspaces"],
+    "modules-left":   ["custom/nixicon", "clock", "hyprland/workspaces"],
     "modules-center": ["tray"],
-    "modules-right":  ["pulseaudio", "network", "battery", "custom/notification"],
+    "modules-right":  ["pulseaudio", "network", "custom/notification"],
 
     "hyprland/workspaces": {
       "disable-scroll":   true,
@@ -69,17 +69,6 @@
       "escape":         true
     },
 
-    "battery": {
-      "interval":       2,
-      "states":         { "warning": 30, "critical": 15 },
-      "format":         "{icon}  {capacity}%",
-      "format-full":    "{icon}  {capacity}%",
-      "format-charging":"󰂄  {capacity}%",
-      "format-plugged": "󰚥  {capacity}%",
-      "format-icons":   ["󰁺","󰁾", "󰂀", "󰁹"],
-      "tooltip-format": "{}"
-    },
-
     "network": {
       "interval":            5,
       "on-click":            "nm-connection-editor",
@@ -93,10 +82,11 @@
       "spacing":   10
     },
 
-    "custom/archicon": {
-      "format":   "󰣇",
+    "custom/nixicon": {
+      "format":   "",
       "tooltip":  false,
-      "on-click": "~/.config/rofi/launchers/type-2/launcher.sh"
+      "on-click": "~/.config/rofi/launchers/type-2/launcher.sh",
+      "on-click-right": "pkill wlogout || wlogout -b 5 -p layer-shell -T 400 -B 400 -L 100 -R 100"
     }
   }
 ]

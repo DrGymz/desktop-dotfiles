@@ -72,7 +72,6 @@
 
   services = {
     blueman.enable = true;
-    displayManager.sddm.enable = true;
     libinput = {
       enable = true;
       mouse = {
@@ -121,11 +120,6 @@
       pkgs.adwaita-fonts
     ];
 
-  services.udev.extraRules = ''
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="2b04", MODE="0666", GROUP="dialout"
-    SUBSYSTEM=="tty", ATTRS{idVendor}=="2b04", MODE="0666", GROUP="dialout"
-  '';
-
   programs = {
     dconf.enable = true;
     hyprland.enable = true;
@@ -133,6 +127,19 @@
     steam = {
       enable = true;
       gamescopeSession.enable = true;
+    };
+  };
+
+  programs.silentSDDM = {
+    enable = true;
+    theme = "default";
+    backgrounds = {
+      mywall = ./wallpapers/mountain.jpg;
+    };
+    settings = {
+      General.animated-background-placeholder = "mountain.jpg";
+      LockScreen.background = "mountain.jpg";
+      LoginScreen.background = "mountain.jpg";
     };
   };
 

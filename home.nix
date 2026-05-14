@@ -45,18 +45,20 @@ in
     gtk.enable = true;
   };
 
-  xdg.configFile = builtins.mapAttrs (name: subpath: {
-    source = create_symlink "${dotfiles}/${subpath}";
-    recursive = true;
-  }) configs // {
-    "nvim/lua" = {
-      source = create_symlink "${dotfiles}/nvim/lua";
+  xdg.configFile =
+    builtins.mapAttrs (name: subpath: {
+      source = create_symlink "${dotfiles}/${subpath}";
+      recursive = true;
+    }) configs
+    // {
+      "nvim/lua" = {
+        source = create_symlink "${dotfiles}/nvim/lua";
+      };
     };
-  };
 
   imports = [
     ./modules/neovim.nix
     ./modules/firefox.nix
-    ./modules/one-liners.nix
+    ./modules/software.nix
   ];
 }

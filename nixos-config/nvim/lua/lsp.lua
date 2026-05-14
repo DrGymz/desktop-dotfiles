@@ -140,7 +140,7 @@ vim.lsp.config.nil_ls = {
 	settings = {
 		['nil'] = {
 			formatting = {
-				command = { "nixfmt" }, -- Uses the nixfmt-rfc-style binary we installed
+				command = { "nixfmt" },
 			},
 		},
 	},

@@ -12,11 +12,9 @@
     fd
     fzf
     gcc
-    gradle
     jdk
     jdt-language-server
     lua-language-server
-    maven
     nil
     nixfmt
     nodejs

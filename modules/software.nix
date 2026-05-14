@@ -15,6 +15,7 @@
     google-chrome
     grim
     hypridle
+    hyprlock
     hyprpaper
     kitty
     libnotify
@@ -29,6 +30,7 @@
     pavucontrol
     pkg-config
     playerctl
+    prismlauncher
     qbittorrent
     qgnomeplatform
     qgnomeplatform-qt6
@@ -41,15 +43,15 @@
     vlc
     waybar
     wl-clipboard
+    wlogout
     zoom-us
     zsh-powerlevel10k
   ];
-
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
+    configType = "hyprlang";
   };
-
   programs.bash = {
     enable = true;
   };
