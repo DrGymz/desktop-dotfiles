@@ -36,13 +36,13 @@
     enable = true;
     powerOnBoot = true;
   };
-
   time.timeZone = "America/Chicago";
 
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 14d";
+    persistent = true;
   };
   nix.settings.auto-optimise-store = true;
   nixpkgs.config.allowUnfree = true;

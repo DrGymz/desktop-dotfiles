@@ -4,8 +4,8 @@
     "spacing": 4,
     "on-sigusr1": "hide",
     "on-sigusr2": "show",
-    "modules-left":   ["custom/nixicon", "clock", "hyprland/workspaces"],
-    "modules-center": ["tray"],
+    "modules-left":   ["custom/nixicon", "clock"],
+    "modules-center": ["hyprland/workspaces"],
     "modules-right":  ["pulseaudio", "network", "custom/notification"],
 
     "hyprland/workspaces": {

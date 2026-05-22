@@ -14,8 +14,6 @@
     eza
     google-chrome
     grim
-    hypridle
-    hyprlock
     hyprpaper
     kitty
     libnotify
@@ -43,7 +41,6 @@
     vlc
     waybar
     wl-clipboard
-    wlogout
     zoom-us
     zsh-powerlevel10k
   ];
@@ -59,7 +56,7 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
-      nrs = "cd ~/dotfiles && git add . && sudo nixos-rebuild switch --flake ~/dotfiles#nixos";
+      nrs = "cd ~/dotfiles && git add . && nix flake update && sudo nixos-rebuild switch --flake ~/dotfiles#nixos";
       ls = "eza -l";
       compile = "particle compile photon2 src/ --saveTo firmware.bin";
       flash = "particle flash --usb firmware.bin";

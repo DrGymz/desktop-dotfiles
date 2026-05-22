@@ -36,6 +36,7 @@
       telescope-nvim
       telescope-fzf-native-nvim
       nvim-treesitter
+      nvim-ufo
 
       lualine-nvim
       gruvbox-nvim
