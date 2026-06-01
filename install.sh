@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_URL="https://github.com/DrGymz/Nixos-Dotfiles.git"
-FLAKE_REF="/mnt/etc/nixos#nixos"
+REPO_URL="https://github.com/DrGymz/desktop-dotfiles.git"
 
 echo "=== NixOS Installer ==="
 echo ""
@@ -11,6 +10,9 @@ if ! command -v git &>/dev/null; then
   echo "Installing git..."
   nix-env -iA nixos.git
 fi
+
+FLAKE_REF="/mnt/etc/nixos#nixos"
+echo ""
 
 lsblk -d -o NAME,SIZE,MODEL
 echo ""
@@ -34,11 +36,15 @@ fi
 echo ""
 echo "[1/7] Partitioning $DISK..."
 
-parted "$DISK" -- mklabel gpt
-parted "$DISK" -- mkpart ESP fat32 1MiB 1GiB
-parted "$DISK" -- set 1 esp on
-parted "$DISK" -- mkpart swap linux-swap 1GiB 9GiB
-parted "$DISK" -- mkpart root ext4 9GiB 100%
+wipefs -a "$DISK"
+parted -s "$DISK" -- mklabel gpt
+parted -s "$DISK" -- mkpart ESP fat32 1MiB 1GiB
+parted -s "$DISK" -- set 1 esp on
+parted -s "$DISK" -- mkpart swap linux-swap 1GiB 9GiB
+parted -s "$DISK" -- mkpart root ext4 9GiB 100%
+
+partprobe "$DISK"
+udevadm settle
 
 if [[ "$DISK" == *"nvme"* || "$DISK" == *"mmcblk"* ]]; then
   PART1="${DISK}p1"
@@ -55,7 +61,6 @@ mkfs.fat -F 32 -n BOOT "$PART1"
 mkswap -L SWAP "$PART2"
 mkfs.ext4 -L NIXOS "$PART3"
 
-# --- Mounting ---
 echo "[3/7] Mounting filesystems..."
 mount "$PART3" /mnt
 mkdir -p /mnt/boot
@@ -74,11 +79,11 @@ git clone "$REPO_URL" /mnt/etc/nixos
 
 cp /tmp/hw-config.nix /mnt/etc/nixos/hardware-configuration.nix
 
-echo "    Cloning dotfiles to /home/asus/dotfiles..."
-mkdir -p /mnt/home/asus
-git clone "$REPO_URL" /mnt/home/asus/dotfiles
+git -C /mnt/etc/nixos add hardware-configuration.nix
 
-cp /tmp/hw-config.nix /mnt/home/asus/dotfiles/hardware-configuration.nix
+echo "    Copying dotfiles to /home/asus/dotfiles..."
+mkdir -p /mnt/home/asus
+cp -a /mnt/etc/nixos /mnt/home/asus/dotfiles
 
 echo "[6/7] Running nixos-install (this will take a while)..."
 nixos-install --flake "$FLAKE_REF" --no-root-passwd
@@ -98,4 +103,4 @@ echo "=== Installation complete! ==="
 echo "You can now reboot into your system."
 echo "  1. reboot"
 echo "  2. Log in as 'asus'"
-echo "  3. Enjoy your system!"
+echo "  3. Rebuild with: sudo nixos-rebuild switch --flake /etc/nixos#nixos"
